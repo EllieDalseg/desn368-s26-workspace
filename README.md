@@ -59,7 +59,7 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 - **Workspace Repository:** https://codepen.io/EllieDalseg ⏳
 - **Figma:** Ellie Dalseg ⏳
 - **CodePen:** https://codepen.io/EllieDalseg ⏳
-- **GitHub Student Pack:** [Confirm approval status here] ⏳
+- **GitHub Student Pack:** wasn't working, will try again tomorrow ⏳
 
 ### **How to Update Your Toolkit:**
 1. **Click the pencil icon** (✏️) at the top right of this README

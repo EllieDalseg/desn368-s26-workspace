@@ -56,7 +56,7 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 ## 🛠️ **My Toolkit**
 *Update these links as you complete each tool setup:*
 - **GitHub Profile:**  ⏳
-- **Workspace Repository:** [Add your repository URL here] ⏳
+- **Workspace Repository:** https://codepen.io/EllieDalseg ⏳
 - **Figma:** Ellie Dalseg ⏳
 - **CodePen:** https://codepen.io/EllieDalseg ⏳
 - **GitHub Student Pack:** [Confirm approval status here] ⏳

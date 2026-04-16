@@ -1,4 +1,4 @@
-# Ellie Dalseg — DESN 368 Portfolio 🐞
+# 🐞 Ellie Dalseg — DESN 368 Portfolio 🐞
 
 ## About
 I’m a graphic design student at EWU exploring web design and development.
@@ -9,7 +9,7 @@ This repo holds all my projects, exercises, and experiments from DESN 368!
 - `week-2/` — HTML 101 exercises, Recipe page, HTML Skeleton
 - `week-3/` — CSS foundations, Recipe styling
 
- **This space** 
+
 This is my course workspace — the place where all my code, designs, and projects live. By the end of the quarter, this repo will be my portfolio.🌱
 
 ---

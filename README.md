@@ -1,47 +1,16 @@
-# 🎉 Welcome to DESN368 CODE + DESIGN ONE!
-Travis Masingale · Spring 2026
+# 🐞 Ellie Dalseg — DESN 368 Portfolio 🐞
 
-**Welcome to DESN368 Web Design!**
-This is your course workspace — the place where all your code, designs, and projects live. By the end of the quarter, this repo becomes your portfolio.
+## About
+I’m a graphic design student at EWU exploring web design and development.
+This repo holds all my projects, exercises, and experiments from DESN 368!
 
----
+## What’s Inside
+- `week-1/` — Newspaper layout, Lost Pet flyer, Favorite Band page
+- `week-2/` — HTML 101 exercises, Recipe page, HTML Skeleton
+- `week-3/` — CSS foundations, Recipe styling
 
-## 🚀 **NEXT STEPS - START HERE!**
 
-### **Step 1: 🐙 Create a GitHub Account**
-If you don't already have one, sign up at [github.com](https://github.com/signup).
-
-1. Use a **professional username** — this will be part of your portfolio URL
-2. Use your **EWU email** or a personal email you check regularly
-3. Verify your email address
-
-### **Step 2: 🐙 Set Up Your GitHub Profile**
-Make your profile presentable before anything else.
-
-1. Click your avatar (top right) → **Your profile** → **Edit profile**
-2. Add your **real name** (so I know who you are!)
-3. Add a **bio** (e.g., "DESN368 Student | Learning Web Design")
-4. Add a **profile photo** (helps me learn names!)
-
-### **Step 3: 🗂️ Create Your Workspace**
-👉 Click **"Use this template"** → **"Create a new repository"** at the top of this page.
-
-Name your repo something professional — this URL will be part of your portfolio.
-
-### **Step 4: 🚀 Run the Onboarding Workflow**
-Your repo includes an automated workflow that creates setup issues — one for each remaining tool, with checkboxes to track your progress.
-
-1. In **your new repository**, click the **Actions** tab
-2. In the left sidebar, click **"🚀 Create Onboarding Issues"**
-3. Click the **"Run workflow"** dropdown → click the green **"Run workflow"** button
-4. Wait about 30 seconds, then go to your **Issues** tab — you’ll see setup issues for Figma, CodePen, and more
-
-Work through the issues in order, checking off tasks and closing each issue as you finish.
-
-### **Step 5: 📝 Update This README**
-As you complete each tool setup, **come back and update the "My Toolkit" section below** with your actual profile links.
-
-📋 You can also find the full setup checklist at [setup/ONBOARDING-CHECKLIST.md](setup/ONBOARDING-CHECKLIST.md).
+This is my course workspace — the place where all my code, designs, and projects live. By the end of the quarter, this repo will be my portfolio.🌱
 
 ---
 
@@ -90,15 +59,6 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 
 ---
 
-## 📁 **Repository Structure**
-Here’s what’s in your portfolio repository:
-- **`/setup/`** - 📋 Tool setup guides and verification checklist
-- **`/week-1/`** - 📝 Week 1 assignments and projects
-- **`/projects/`** - 🎨 Major course projects and portfolio pieces
-- **`README.md`** - 📖 This file - your portfolio home page  
-
----
-
 ## 🔗 **Course Resources**
 ### **Primary Course Hub**
 - **📌 Milanote Course Home** - [Course board with assignments & resources](https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i)
@@ -118,11 +78,3 @@ Here’s what’s in your portfolio repository:
 
 ---
 
-## 🆘 **Need Help?**
-- **Stuck on setup?** Check the [troubleshooting guides](setup/) in your setup folder.  
-- **Technical issues?** Email your instructor or visit office hours.  
-- **Want to see examples?** Browse other students' public repositories for inspiration.  
-
----
-
-**🎯 Ready to start? [Go to your setup checklist now!](setup/ONBOARDING-CHECKLIST.md)**

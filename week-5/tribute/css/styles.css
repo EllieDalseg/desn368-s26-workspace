@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  
+}
+body {
+    margin: 0;
+    font-family: "Figtree", Arial, sans-serif;
+    background-color: #f05a28; /* orange background */
+    color: white;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 200;
+}
+
+#top-container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+
+
+h1 {
+  font-family: "Jost", Ariel, sans-serif;
+  font-size: 70px;
+  margin: 20px 0;
+  text-shadow: 10px 12px 0px black;
+}
+
+.subtitle {
+  margin: 0 auto;
+  width: 600px;
+  font-size: 25px;
+  margin-bottom: 35px;
+}
+
+figcaption {
+  font-family: "Love ya like a sister", Ariel, sans-serif;
+  font-size: 24px;
+  font-weight: 100;
+  margin: 30px 0;
+
+  
+}
+
+h3 {
+  font-family: "Love ya like a sister", Ariel, sans-serif;
+  font-size: 25px;
+  font-weight: 100px;
+  margin-top: 62px;
+
+}
+
+img {
+
+width: 620px;
+border: 25px solid black
+}
+
+#bottom-container {
+  width: 800px;
+  margin: 0 auto;
+  background-color: #C74918bf;
+  margin-bottom: 60px;
+}
+main {
+  width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main-top {
+  margin-top: 20px;
+}
+
+.riot-bar {
+  background-image: url("../css/images/riot.jpg");
+  height: 75px;
+  background-size: cover;
+  background-position: center;
+  background-size: 70%;
+}
+
+a {
+  color: white;
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  font-family: "Love ya like a sister", Ariel, sans-serif;
+  font-size: 25px;
+  font-weight: 100px;
+  
+}

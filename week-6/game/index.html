@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="game">
+
+    <h1>LOST & FOUND</h1>
+
+    <div id="stats">
+      <p>Tapes Found: <span id="tape-count">0</span>/3</p>
+    </div>
+
+    <div id="room-image"></div>
+
+    <div id="text-box">
+      <p id="room-text">
+        You wake up inside a dark abandoned building.
+      </p>
+    </div>
+
+    <div id="buttons">
+      <button onclick="goToRoom('hallway')">Hallway</button>
+      <button onclick="goToRoom('security')">Security Room</button>
+      <button onclick="searchRoom()">Search Room</button>
+      <button onclick="watchTape()">Watch Tape</button>
+    </div>
+
+    <div id="inventory">
+      <h2>Inventory</h2>
+      <ul id="inventory-list"></ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

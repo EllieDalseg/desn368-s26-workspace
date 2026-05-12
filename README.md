@@ -25,11 +25,11 @@ This is my course workspace — the place where all my code, designs, and projec
 
 ## 🛠️ **My Toolkit**
 *Update these links as you complete each tool setup:*
-- **GitHub Profile:**  ⏳
-- **Workspace Repository:** https://codepen.io/EllieDalseg ⏳
-- **Figma:** Ellie Dalseg ⏳
-- **CodePen:** https://codepen.io/EllieDalseg ⏳
-- **GitHub Student Pack:** haven't gotten to work ⏳
+- **GitHub Profile:** https://github.com/EllieDalseg 🌿
+- **Workspace Repository:** https://codepen.io/EllieDalseg 🌿
+- **Figma:** Ellie Dalseg 🌿
+- **CodePen:** https://codepen.io/EllieDalseg 🌿
+- **GitHub Student Pack:** haven't gotten to work 🌿
 
 ### **How to Update Your Toolkit:**
 1. **Click the pencil icon** (✏️) at the top right of this README

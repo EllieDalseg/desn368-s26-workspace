@@ -7,9 +7,10 @@ This repo holds all my projects, exercises, and experiments from DESN 368!
 ## What’s Inside
 - `week-1/` — Newspaper layout, Lost Pet flyer, Favorite Band page
 - `week-2/` — HTML 101 exercises, Recipe page, HTML Skeleton
-- `week-3/` — CSS foundations, Recipe styling
-
-
+- `week-3/` — CSS foundations
+- `week-4/` — Recipe styling
+- `week-5/` — Tribute site
+  
 This is my course workspace — the place where all my code, designs, and projects live. By the end of the quarter, this repo will be my portfolio.🌱
 
 ---
@@ -28,7 +29,7 @@ This is my course workspace — the place where all my code, designs, and projec
 - **Workspace Repository:** https://codepen.io/EllieDalseg ⏳
 - **Figma:** Ellie Dalseg ⏳
 - **CodePen:** https://codepen.io/EllieDalseg ⏳
-- **GitHub Student Pack:** wasn't working, will try again tomorrow ⏳
+- **GitHub Student Pack:** haven't gotten to work ⏳
 
 ### **How to Update Your Toolkit:**
 1. **Click the pencil icon** (✏️) at the top right of this README
@@ -49,7 +50,7 @@ This is my course workspace — the place where all my code, designs, and projec
 - [x] **Week 2:** Th3 F1r5t T4g
 - [x] **Week 3:** D0cum3nt 4rch1t3ctur3
 - [x] **Week 4:** Th3 C4sc4d3 B3g1n5
-- [ ] **Week 5:** F0rm5 & 1nput5
+- [x] **Week 5:** F0rm5 & 1nput5
 - [ ] **Week 6:** Fl3xb0x M45t3ry
 - [ ] **Week 7:** Tr1but3 P4g3
 - [ ] **Week 8:** Gr1d Sy5t3m5

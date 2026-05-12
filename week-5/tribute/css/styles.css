@@ -73,7 +73,7 @@ main {
 }
 
 .riot-bar {
-  background-image: url("../css/images/riot.jpg");
+  background-image: url("../images/riot.jpg");
   height: 75px;
   background-size: cover;
   background-position: center;

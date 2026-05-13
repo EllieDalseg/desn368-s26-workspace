@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lost & Found</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        font-family: Arial, sans-serif;
+    }
+
+    canvas {
+        display: block;
+    }
+
+    #crosshair {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+    }
+
+    #ui {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        font-size: 18px;
+        text-shadow: 0 0 10px black;
+    }
+
+    #message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 28px;
+        display: none;
+        text-align: center;
+        text-shadow: 0 0 15px black;
+    }
+
+    #tapeScreen {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.95);
+        color: #00ff99;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 32px;
+        text-align: center;
+        padding: 40px;
+    }
+
+    #static {
+        position: absolute;
+        inset: 0;
+        background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.03) 0px,
+            rgba(255,255,255,0.03) 2px,
+            transparent 2px,
+            transparent 4px
+        );
+        pointer-events: none;
+        animation: flicker 0.08s infinite;
+        opacity: 0.15;
+    }
+
+    @keyframes flicker {
+        0% { opacity: 0.1; }
+        50% { opacity: 0.2; }
+        100% { opacity: 0.1; }
+    }
+</style>
+</head>
+<body>
+
+<div id="crosshair"></div>
+<div id="ui">WASD to move | Mouse to look</div>
+<div id="message"></div>
+
+<div id="tapeScreen">
+    <div id="tapeText"></div>
+    <br>
+    <div style="font-size:18px; color:white;">Press SPACE to close tape</div>
+    <div id="static"></div>
+</div>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+import { PointerLockControls } from 'https://cdn.jsdelivr.net/npm/three@0.160/examples/jsm/controls/PointerLockControls.js';
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050505);
+scene.fog = new THREE.Fog(0x000000, 5, 35);
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new PointerLockControls(camera, document.body);
+
+document.body.addEventListener('click', () => {
+    controls.lock();
+});
+
+scene.add(controls.getObject());
+
+camera.position.set(0, 2, 8);
+
+const ambientLight = new THREE.AmbientLight(0x555555);
+scene.add(ambientLight);
+
+const hallwayLight = new THREE.PointLight(0xffddaa, 2, 20);
+hallwayLight.position.set(0, 6, 0);
+scene.add(hallwayLight);
+
+const floorGeometry = new THREE.PlaneGeometry(60, 60);
+const floorMaterial = new THREE.MeshStandardMaterial({
+    color: 0x333333
+});
+
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+scene.add(floor);
+
+function createWall(x, y, z, w, h, d) {
+    const wall = new THREE.Mesh(
+        new THREE.BoxGeometry(w, h, d),
+        new THREE.MeshStandardMaterial({ color: 0x222222 })
+    );
+
+    wall.position.set(x, y, z);
+    scene.add(wall);
+    return wall;
+}
+
+createWall(0, 3, -20, 20, 6, 1);
+createWall(-10, 3, 0, 1, 6, 40);
+createWall(10, 3, 0, 1, 6, 40);
+
+createWall(-5, 3, -10, 6, 6, 1);
+createWall(5, 3, -10, 6, 6, 1);
+
+const securityRoom = new THREE.Mesh(
+    new THREE.BoxGeometry(8, 5, 8),
+    new THREE.MeshStandardMaterial({ color: 0x111111 })
+);
+
+securityRoom.position.set(0, 2.5, 12);
+scene.add(securityRoom);
+
+const tapeGeometry = new THREE.BoxGeometry(0.5, 0.3, 0.8);
+const tapeMaterial = new THREE.MeshStandardMaterial({ color: 0x111111 });
+
+const tapes = [
+    {
+        mesh: new THREE.Mesh(tapeGeometry, tapeMaterial),
+        clue: 'EMPLOYEE EXIT CODE: 4132',
+        found: false
+    },
+    {
+        mesh: new THREE.Mesh(tapeGeometry, tapeMaterial),
+        clue: 'THE FIGURE IS WATCHING.',
+        found: false
+    },
+    {
+        mesh: new THREE.Mesh(tapeGeometry, tapeMaterial),
+        clue: 'RUN.',
+        found: false
+    }
+];
+
+tapes[0].mesh.position.set(-6, 1, -5);
+tapes[1].mesh.position.set(6, 1, -14);
+tapes[2].mesh.position.set(0, 1, -18);
+
+tapes.forEach(t => scene.add(t.mesh));
+
+const monster = new THREE.Mesh(
+    new THREE.BoxGeometry(1.5, 4, 1),
+    new THREE.MeshStandardMaterial({ color: 0x000000 })
+);
+
+monster.position.set(0, 2, -25);
+scene.add(monster);
+
+let velocity = new THREE.Vector3();
+let moveForward = false;
+let moveBackward = false;
+let moveLeft = false;
+let moveRight = false;
+
+const keys = {};
+
+window.addEventListener('keydown', e => {
+    keys[e.code] = true;
+
+    if (e.code === 'KeyE') interact();
+
+    if (e.code === 'Space') {
+        document.getElementById('tapeScreen').style.display = 'none';
+    }
+});
+
+window.addEventListener('keyup', e => {
+    keys[e.code] = false;
+});
+
+function updateMovement() {
+    moveForward = keys['KeyW'];
+    moveBackward = keys['KeyS'];
+    moveLeft = keys['KeyA'];
+    moveRight = keys['KeyD'];
+
+    velocity.x = 0;
+    velocity.z = 0;
+    const speed = 0.12;
+
+    if (moveForward) velocity.z -= speed;
+    if (moveBackward) velocity.z += speed;
+    if (moveLeft) velocity.x -= speed;
+    if (moveRight) velocity.x += speed;
+
+    controls.moveRight(velocity.x);
+    controls.moveForward(velocity.z);
+}
+
+const raycaster = new THREE.Raycaster();
+
+function interact() {
+    raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
+
+    const tapeMeshes = tapes.filter(t => !t.found).map(t => t.mesh);
+    const intersects = raycaster.intersectObjects(tapeMeshes);
+
+    if (intersects.length > 0) {
+        const tape = tapes.find(t => t.mesh === intersects[0].object);
+
+        if (camera.position.distanceTo(tape.mesh.position) < 3) {
+            tape.found = true;
+            scene.remove(tape.mesh);
+            showTape(tape.clue);
+
+            if (tape.clue === 'THE FIGURE IS WATCHING.') {
+                monster.position.z = -10;
+            }
+
+            if (tape.clue === 'RUN.') {
+                monster.position.z = camera.position.z - 8;
+            }
+        }
+    }
+
+    if (
+        camera.position.distanceTo(new THREE.Vector3(0, 0, -20)) < 4 &&
+        tapes.every(t => t.found)
+    ) {
+        showMessage('YOU ESCAPED');
+    }
+}
+
+function showTape(text) {
+    document.getElementById('tapeScreen').style.display = 'flex';
+    document.getElementById('tapeText').innerHTML = text;
+}
+
+function showMessage(text) {
+    const msg = document.getElementById('message');
+    msg.innerHTML = text;
+    msg.style.display = 'block';
+}
+
+function animateMonster() {
+    const distance = camera.position.distanceTo(monster.position);
+
+    if (distance < 15) {
+        monster.lookAt(camera.position);
+    }
+
+    if (distance < 8) {
+        const direction = new THREE.Vector3();
+        direction.subVectors(camera.position, monster.position).normalize();
+        monster.position.add(direction.multiplyScalar(0.01));
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    updateMovement();
+    animateMonster();
+
+    renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+
+</body>
+</html>

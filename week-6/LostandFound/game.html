@@ -1,92 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<meta charset="UTF-8">
 <title>Lost & Found</title>
 
 <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-        font-family: Arial, sans-serif;
-    }
 
-    canvas {
-        display: block;
-    }
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
 
-    #crosshair {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 8px;
-        height: 8px;
-        background: white;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.7;
-    }
+canvas {
+    display: block;
+}
 
-    #ui {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        color: white;
-        font-size: 18px;
-        text-shadow: 0 0 10px black;
-        z-index: 5;
-    }
+#ui {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 10;
+    font-size: 18px;
+}
 
-    #message {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 32px;
-        display: none;
-        z-index: 10;
-        text-shadow: 0 0 20px black;
-    }
+#crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
 
-    #tapeScreen {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.95);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: #00ff99;
-        font-size: 32px;
-        text-align: center;
-        padding: 40px;
-        z-index: 20;
-    }
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff99;
+    font-size: 32px;
+    display: none;
+    z-index: 20;
+    text-align: center;
+}
 
-    #static {
-        position: absolute;
-        inset: 0;
-        background-image:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.03) 0px,
-            rgba(255,255,255,0.03) 2px,
-            transparent 2px,
-            transparent 4px
-        );
-        animation: flicker 0.08s infinite;
-        pointer-events: none;
-    }
+#tapeScreen {
 
-    @keyframes flicker {
-        0% { opacity: 0.08; }
-        50% { opacity: 0.18; }
-        100% { opacity: 0.08; }
-    }
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,0.95);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #00ff99;
+
+    font-size: 32px;
+
+    text-align: center;
+
+    z-index: 30;
+}
+
 </style>
 </head>
 
@@ -97,7 +83,7 @@
 <div id="ui">
     WASD = Move<br>
     Mouse = Look<br>
-    E = Interact
+    E = Collect Tape
 </div>
 
 <div id="message"></div>
@@ -107,71 +93,72 @@
 
     <br><br>
 
-    <div style="font-size:18px; color:white;">
-        Press SPACE to close tape
+    <div style="color:white;font-size:18px;">
+        Press SPACE to close
     </div>
-
-    <div id="static"></div>
 </div>
 
-<script type="module">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<script type="module">
+<script>
 
-import * as THREE from "https://cdn.skypack.dev/three@0.160.0";
+let scene, camera, renderer;
 
-import { PointerLockControls }
-from "https://cdn.skypack.dev/three@0.160.0/examples/jsm/controls/PointerLockControls.js";
+scene = new THREE.Scene();
 
-const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x111111);
 
-scene.background = new THREE.Color(0x444444);
+scene.fog = new THREE.Fog(
+    0x000000,
+    10,
+    45
+);
 
-const camera = new THREE.PerspectiveCamera(
+camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
 );
 
-const renderer = new THREE.WebGLRenderer();
+renderer = new THREE.WebGLRenderer();
 
 renderer.setSize(
     window.innerWidth,
     window.innerHeight
 );
 
-document.body.appendChild(renderer.domElement);
-
-const light = new THREE.AmbientLight(
-    0xffffff,
-    3
+document.body.appendChild(
+    renderer.domElement
 );
 
-scene.add(light);
+camera.position.set(0, 2, 8);
 
-const controls =
-    new PointerLockControls(
-        camera,
-        document.body
+const ambientLight =
+    new THREE.AmbientLight(
+        0xffffff,
+        1.2
     );
 
-document.body.addEventListener(
-    "click",
-    () => controls.lock()
-);
+scene.add(ambientLight);
 
-scene.add(controls.getObject());
+const pointLight =
+    new THREE.PointLight(
+        0xffcc88,
+        2,
+        30
+    );
 
-camera.position.y = 2;
-camera.position.z = 5;
+pointLight.position.set(0, 6, 0);
+
+scene.add(pointLight);
 
 const floor = new THREE.Mesh(
 
-    new THREE.PlaneGeometry(50, 50),
+    new THREE.PlaneGeometry(60, 60),
 
     new THREE.MeshStandardMaterial({
-        color: 0x555555
+        color: 0x333333
     })
 );
 
@@ -193,20 +180,73 @@ function wall(x, y, z, w, h, d) {
     mesh.position.set(x, y, z);
 
     scene.add(mesh);
+
+    return mesh;
 }
 
-wall(0, 2, -20, 20, 5, 1);
+wall(0, 3, -20, 20, 6, 1);
 
-wall(-10, 2, 0, 1, 5, 40);
+wall(-10, 3, 0, 1, 6, 40);
 
-wall(10, 2, 0, 1, 5, 40);
+wall(10, 3, 0, 1, 6, 40);
 
-const tape = new THREE.Mesh(
+wall(-5, 3, -10, 6, 6, 1);
+
+wall(5, 3, -10, 6, 6, 1);
+
+const tapes = [];
+
+function createTape(x, y, z, text) {
+
+    const tape = new THREE.Mesh(
+
+        new THREE.BoxGeometry(
+            0.5,
+            0.3,
+            0.8
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color: 0x000000
+        })
+    );
+
+    tape.position.set(x, y, z);
+
+    tape.userData.clue = text;
+
+    scene.add(tape);
+
+    tapes.push(tape);
+}
+
+createTape(
+    -6,
+    1,
+    -5,
+    "EMPLOYEE EXIT CODE: 4132"
+);
+
+createTape(
+    6,
+    1,
+    -14,
+    "THE FIGURE IS WATCHING."
+);
+
+createTape(
+    0,
+    1,
+    -18,
+    "RUN."
+);
+
+const monster = new THREE.Mesh(
 
     new THREE.BoxGeometry(
-        0.5,
-        0.3,
-        0.8
+        1.5,
+        4,
+        1
     ),
 
     new THREE.MeshStandardMaterial({
@@ -214,65 +254,248 @@ const tape = new THREE.Mesh(
     })
 );
 
-tape.position.set(0, 1, -5);
+monster.position.set(0, 2, -25);
 
-scene.add(tape);
+scene.add(monster);
+
+let yaw = 0;
+let pitch = 0;
+
+document.body.addEventListener(
+    "click",
+    () => {
+        document.body.requestPointerLock();
+    }
+);
+
+document.addEventListener(
+    "mousemove",
+    e => {
+
+        if (
+            document.pointerLockElement ===
+            document.body
+        ) {
+
+            yaw -= e.movementX * 0.002;
+
+            pitch -= e.movementY * 0.002;
+
+            pitch = Math.max(
+                -Math.PI / 2,
+                Math.min(
+                    Math.PI / 2,
+                    pitch
+                )
+            );
+
+            camera.rotation.order = "YXZ";
+
+            camera.rotation.y = yaw;
+
+            camera.rotation.x = pitch;
+        }
+    }
+);
 
 const keys = {};
 
 window.addEventListener(
     "keydown",
-    e => keys[e.code] = true
+    e => {
+
+        keys[e.code] = true;
+
+        if (e.code === "KeyE") {
+            interact();
+        }
+
+        if (e.code === "Space") {
+
+            document.getElementById(
+                "tapeScreen"
+            ).style.display = "none";
+        }
+    }
 );
 
 window.addEventListener(
     "keyup",
-    e => keys[e.code] = false
+    e => {
+        keys[e.code] = false;
+    }
 );
 
 function movement() {
 
-    const speed = 0.1;
+    const speed = 0.12;
 
-    if (keys["KeyW"])
-        controls.moveForward(speed);
+    const direction =
+        new THREE.Vector3();
 
-    if (keys["KeyS"])
-        controls.moveForward(-speed);
+    camera.getWorldDirection(direction);
 
-    if (keys["KeyA"])
-        controls.moveRight(-speed);
+    const right =
+        new THREE.Vector3();
 
-    if (keys["KeyD"])
-        controls.moveRight(speed);
+    right.crossVectors(
+        direction,
+        camera.up
+    );
+
+    if (keys["KeyW"]) {
+
+        camera.position.add(
+            direction.clone()
+            .multiplyScalar(speed)
+        );
+    }
+
+    if (keys["KeyS"]) {
+
+        camera.position.add(
+            direction.clone()
+            .multiplyScalar(-speed)
+        );
+    }
+
+if (keys["KeyA"]) {
+
+    camera.position.add(
+        right.clone()
+        .multiplyScalar(-speed)
+    );
+}
+
+if (keys["KeyD"]) {
+
+    camera.position.add(
+        right.clone()
+        .multiplyScalar(speed)
+    );
+}
+
+
+function interact() {
+
+    const raycaster =
+        new THREE.Raycaster();
+
+    raycaster.setFromCamera(
+        new THREE.Vector2(0,0),
+        camera
+    );
+
+    const hits =
+        raycaster.intersectObjects(tapes);
+
+    if (hits.length > 0) {
+
+        const tape = hits[0].object;
+
+        if (
+            camera.position.distanceTo(
+                tape.position
+            ) < 3
+        ) {
+
+            scene.remove(tape);
+
+            tapes.splice(
+                tapes.indexOf(tape),
+                1
+            );
+
+            showTape(
+                tape.userData.clue
+            );
+
+            if (
+                tape.userData.clue ===
+                "THE FIGURE IS WATCHING."
+            ) {
+
+                monster.position.z = -10;
+            }
+        }
+    }
+}
+
+function showTape(text) {
+
+    document.getElementById(
+        "tapeScreen"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "tapeText"
+    ).innerHTML = text;
+}
+
+function animateMonster() {
+
+    const dist =
+        camera.position.distanceTo(
+            monster.position
+        );
+
+    if (dist < 12) {
+
+        monster.lookAt(
+            camera.position
+        );
+    }
+
+    if (dist < 8) {
+
+        const dir =
+            new THREE.Vector3();
+
+        dir.subVectors(
+            camera.position,
+            monster.position
+        ).normalize();
+
+        monster.position.add(
+            dir.multiplyScalar(0.01)
+        );
+    }
 }
 
 function animate() {
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(
+        animate
+    );
 
     movement();
 
-    renderer.render(scene, camera);
+    animateMonster();
+
+    renderer.render(
+        scene,
+        camera
+    );
 }
 
 animate();
 
-window.addEventListener("resize", () => {
+window.addEventListener(
+    "resize",
+    () => {
 
-    camera.aspect =
-        window.innerWidth /
-        window.innerHeight;
+        camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
 
-    camera.updateProjectionMatrix();
+        camera.updateProjectionMatrix();
 
-    renderer.setSize(
-        window.innerWidth,
-        window.innerHeight
-    );
-});
-
-</script>
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+    }
+);
 
 </script>
 

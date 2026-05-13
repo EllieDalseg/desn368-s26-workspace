@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Lost & Found</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        font-family: Arial, sans-serif;
+    }
+
+    canvas {
+        display: block;
+    }
+
+    #crosshair {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+    }
+
+    #ui {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        font-size: 18px;
+        text-shadow: 0 0 10px black;
+        z-index: 5;
+    }
+
+    #message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 32px;
+        display: none;
+        z-index: 10;
+        text-shadow: 0 0 20px black;
+    }
+
+    #tapeScreen {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.95);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #00ff99;
+        font-size: 32px;
+        text-align: center;
+        padding: 40px;
+        z-index: 20;
+    }
+
+    #static {
+        position: absolute;
+        inset: 0;
+        background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.03) 0px,
+            rgba(255,255,255,0.03) 2px,
+            transparent 2px,
+            transparent 4px
+        );
+        animation: flicker 0.08s infinite;
+        pointer-events: none;
+    }
+
+    @keyframes flicker {
+        0% { opacity: 0.08; }
+        50% { opacity: 0.18; }
+        100% { opacity: 0.08; }
+    }
+</style>
+</head>
+
+<body>
+
+<div id="crosshair"></div>
+
+<div id="ui">
+    WASD = Move<br>
+    Mouse = Look<br>
+    E = Interact
+</div>
+
+<div id="message"></div>
+
+<div id="tapeScreen">
+    <div id="tapeText"></div>
+
+    <br><br>
+
+    <div style="font-size:18px; color:white;">
+        Press SPACE to close tape
+    </div>
+
+    <div id="static"></div>
+</div>
+
+<script type="module">
+
+<script type="module">
+
+import * as THREE from "https://cdn.skypack.dev/three@0.160.0";
+
+import { PointerLockControls }
+from "https://cdn.skypack.dev/three@0.160.0/examples/jsm/controls/PointerLockControls.js";
+
+const scene = new THREE.Scene();
+
+scene.background = new THREE.Color(0x444444);
+
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+);
+
+const renderer = new THREE.WebGLRenderer();
+
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
+
+document.body.appendChild(renderer.domElement);
+
+const light = new THREE.AmbientLight(
+    0xffffff,
+    3
+);
+
+scene.add(light);
+
+const controls =
+    new PointerLockControls(
+        camera,
+        document.body
+    );
+
+document.body.addEventListener(
+    "click",
+    () => controls.lock()
+);
+
+scene.add(controls.getObject());
+
+camera.position.y = 2;
+camera.position.z = 5;
+
+const floor = new THREE.Mesh(
+
+    new THREE.PlaneGeometry(50, 50),
+
+    new THREE.MeshStandardMaterial({
+        color: 0x555555
+    })
+);
+
+floor.rotation.x = -Math.PI / 2;
+
+scene.add(floor);
+
+function wall(x, y, z, w, h, d) {
+
+    const mesh = new THREE.Mesh(
+
+        new THREE.BoxGeometry(w, h, d),
+
+        new THREE.MeshStandardMaterial({
+            color: 0x222222
+        })
+    );
+
+    mesh.position.set(x, y, z);
+
+    scene.add(mesh);
+}
+
+wall(0, 2, -20, 20, 5, 1);
+
+wall(-10, 2, 0, 1, 5, 40);
+
+wall(10, 2, 0, 1, 5, 40);
+
+const tape = new THREE.Mesh(
+
+    new THREE.BoxGeometry(
+        0.5,
+        0.3,
+        0.8
+    ),
+
+    new THREE.MeshStandardMaterial({
+        color: 0x000000
+    })
+);
+
+tape.position.set(0, 1, -5);
+
+scene.add(tape);
+
+const keys = {};
+
+window.addEventListener(
+    "keydown",
+    e => keys[e.code] = true
+);
+
+window.addEventListener(
+    "keyup",
+    e => keys[e.code] = false
+);
+
+function movement() {
+
+    const speed = 0.1;
+
+    if (keys["KeyW"])
+        controls.moveForward(speed);
+
+    if (keys["KeyS"])
+        controls.moveForward(-speed);
+
+    if (keys["KeyA"])
+        controls.moveRight(-speed);
+
+    if (keys["KeyD"])
+        controls.moveRight(speed);
+}
+
+function animate() {
+
+    requestAnimationFrame(animate);
+
+    movement();
+
+    renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+
+    camera.aspect =
+        window.innerWidth /
+        window.innerHeight;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+    );
+});
+
+</script>
+
+</script>
+
+</body>
+</html>

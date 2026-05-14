@@ -38,7 +38,7 @@ floorTexture.minFilter =
 
 const ceilingTexture =
     textureLoader.load(
-        "https://threejs.org/examples/textures/terrain/grasslight-big.jpg"
+        "https://threejs.org/examples/textures/uv_grid_opengl.jpg"
     );
 
 ceilingTexture.wrapS =
@@ -48,8 +48,8 @@ ceilingTexture.wrapT =
     THREE.RepeatWrapping;
 
 ceilingTexture.repeat.set(
-    20,
-    20
+    12,
+    12
 );
 
 ceilingTexture.magFilter =
@@ -67,11 +67,12 @@ scene = new THREE.Scene();
 scene.background =
     new THREE.Color(0x050505);
 
-scene.fog = new THREE.Fog(
-    0x181614,
-    8,
-    85
-);
+scene.fog =
+    new THREE.Fog(
+        0x050505,
+        4,
+        45
+    );
 
 // =====================================
 // CAMERA
@@ -123,7 +124,7 @@ camera.position.set(
 const ambientLight =
     new THREE.AmbientLight(
         0xbbbba5,
-        0.12
+        0.05
     );
 
 scene.add(ambientLight);
@@ -139,8 +140,8 @@ function createMallLight(
     const light =
         new THREE.PointLight(
             0xd6d1b8,
-            0.8,
-            28
+            0.45,
+18            
         );
 
     light.position.set(
@@ -237,7 +238,7 @@ const floor =
 
             map: floorTexture,
 
-            color: 0x99918a,
+            color: 0x5e5852,
 
             roughness: 1
         })
@@ -264,7 +265,7 @@ const hallwayCeiling =
 
             map: ceilingTexture,
 
-            color: 0x5e5a55,
+            color: 0x0d0d0d,
 
             roughness: 1,
 

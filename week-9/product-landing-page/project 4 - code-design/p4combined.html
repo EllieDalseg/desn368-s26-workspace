@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartSprout — Smart Care for Healthier Plants</title>
+    <style>
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green-dark:   #2d5a3d;
+  --green-mid:    #4a7c59;
+  --green-light:  #c8d8c0;
+  --cream:        #f0ede4;
+  --white:        #ffffff;
+  --ink:          #1a1a1a;
+  --ink-soft:     #4a4a4a;
+  --radius:       8px;
+  --shadow:       0 2px 12px rgba(0,0,0,.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+
+
+/* ── Buttons ── */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.btn-primary  { background: var(--green-dark); color: var(--white); }
+.btn-secondary { background: transparent; color: var(--green-dark);
+                  border: 2px solid var(--green-dark); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(45,90,61,.25);
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--green-dark);
+  color: var(--white);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: .9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+#header-img { width: 24px; height: 24px; border-radius: 4px; }
+
+.logo-name { font-weight: 700; font-size: 1.05rem; }
+
+#nav-bar { display: flex; gap: 1.75rem; }
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  font-size: .9rem;
+  opacity: .9;
+  transition: opacity .15s;
+}
+.nav-link:hover { opacity: 1; }
+
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero { background: var(--white); }
+
+.section-label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: .75rem;
+}
+
+.hero-split {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-copy { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.hero-sub { color: var(--ink-soft); max-width: 38ch; }
+
+.hero-visual { position: relative; }
+.hero-visual img { border-radius: 12px; width: 100%; }
+
+.badge {
+  position: absolute;
+  background: var(--white);
+  border-radius: 8px;
+  padding: .4rem .7rem;
+  font-size: .75rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  line-height: 1.3;
+}
+.badge-temp  { top: 8%;   left: -6%; }
+.badge-sun   { top: 40%;  right: -8%; }
+.badge-moist { bottom: 20%; left: -5%; }
+
+.proof-band {
+  background: var(--cream);
+  padding: 4rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.proof-copy { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 1rem; }
+.proof-photo { grid-column: 1; grid-row: 1 / 3; }
+.proof-photo img { border-radius: 12px; width: 100%; height: 100%; object-fit: cover; }
+
+.stats-list {
+  grid-column: 2;
+  grid-row: 2;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .25rem; }
+.stat .stat-icon { font-size: 2.25rem; color: inherit; }
+.stat strong { font-size: 1.1rem; }
+.stat span   { font-size: .8rem; color: var(--ink-soft); }
+
+
+/* ══════════════════════════════════════════
+   VIDEO
+══════════════════════════════════════════ */
+#video {
+  background: var(--cream);
+  padding: 4rem 1.5rem;
+}
+
+.video-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.video-thumb {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+}
+.video-thumb img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+}
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-btn span {
+  width: 64px;
+  height: 64px;
+  background: rgba(255,255,255,.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  transition: transform .2s, box-shadow .2s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .video-thumb:hover .play-btn span {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(0,0,0,.35);
+  }
+}
+
+.video-copy { color: var(--ink); display: flex; flex-direction: column; gap: 1.5rem; }
+.video-copy p { color: var(--ink-soft); }
+
+
+/* ══════════════════════════════════════════
+   BENEFITS
+══════════════════════════════════════════ */
+#features {
+  background: var(--white);
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+#features > h2 { margin-bottom: 3rem; }
+
+/* ══════════════════════════════════════════
+   FEATURE CARDS
+══════════════════════════════════════════ */
+#feature-cards {
+  background: var(--cream);
+  padding: 5rem 1.5rem;
+}
+
+.features-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  text-align: left;
+  transition: transform .25s, box-shadow .25s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+}
+
+.feature-card--benefit {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  text-align: center;
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  background: var(--green-light);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto .5rem;
+}
+
+.feature-card--benefit p { color: var(--ink-soft); font-size: .9rem; }
+
+.feature-card--photo img { width: 100%; height: 180px; object-fit: cover; }
+
+.feature-card-copy {
+  padding: 1rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.feature-card-copy p { color: var(--ink-soft); font-size: .9rem; }
+
+
+/* ══════════════════════════════════════════
+   DATA TABLE
+══════════════════════════════════════════ */
+#data { background: var(--white); padding: 5rem 1.5rem; }
+
+#data h2 { text-align: center; margin-bottom: 2.5rem; }
+
+.table-scroll { overflow-x: auto; }
+
+#data-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: .95rem;
+}
+
+#data-table thead tr { background: var(--green-dark); color: var(--white); }
+
+#data-table th,
+#data-table td {
+  padding: .85rem 1.25rem;
+  text-align: center;
+  border-bottom: 1px solid #e0ddd5;
+}
+
+#data-table th:first-child,
+#data-table td:first-child { text-align: left; }
+
+#data-table tbody tr:nth-child(even) { background: var(--cream); }
+
+.row-price td { background: var(--green-light); }
+
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact { background: var(--white); padding: 5rem 1.5rem; }
+
+.contact-layout {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.contact-copy { display: flex; flex-direction: column; gap: 1rem; }
+.contact-copy p { color: var(--ink-soft); }
+
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.form-field { display: flex; flex-direction: column; gap: .4rem; }
+
+.form-field label { font-size: .875rem; font-weight: 600; color: var(--ink); }
+
+.form-field input {
+  padding: .7rem 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: var(--white);
+  transition: border-color .15s;
+}
+
+.form-field input:focus { outline: none; border-color: var(--green-mid); }
+
+#submit {
+  align-self: flex-start;
+  padding: .75rem 2rem;
+  background: var(--green-dark);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(45,90,61,.3);
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.7);
+  padding: 1.5rem;
+  font-size: .85rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+footer nav { display: flex; gap: 1.5rem; }
+footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+footer a:hover { color: var(--white); }
+
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .hero-split,
+  .proof-band,
+  .video-layout,
+  .contact-layout { grid-template-columns: 1fr; }
+
+  .proof-copy,
+  .proof-photo { grid-column: 1; grid-row: auto; }
+
+  .stats-list { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  .features-grid { grid-template-columns: 1fr; }
+
+  #feature-cards { padding: 3rem 1.5rem; }
+
+  .badge { display: none; }
+
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+    </style>
+  </head>
+  <body>
+
+    <header id="header">
+      <div class="header-inner">
+        <a href="#hero" class="logo-link">
+          <img
+            id="header-img"
+            src="images/Vector.png"
+            alt="SmartSprout leaf logo mark"
+          />
+          <span class="logo-name">SmartSprout</span>
+        </a>
+        <nav id="nav-bar">
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#data">Pricing</a>
+          <a class="nav-link" href="#video">Video</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <section id="hero">
+        <div class="hero-split">
+          <div class="hero-copy">
+            <p class="section-label">Real-time plant monitoring</p>
+            <h1>Smart care for<br />healthier plants.</h1>
+            <p class="hero-sub">
+              SmartSprout monitors sunlight, moisture, and room temperature in
+              real time, so you'll always know what your plant needs.
+            </p>
+            <a href="#contact" class="btn-primary">Shop Now</a>
+          </div>
+          <div class="hero-visual">
+            <img
+              src="images/img-hero.jpg"
+              alt="Potted snake plant with SmartSprout sensor attached"
+            />
+            <div class="badge badge-temp">🌡 Temp<br /><small>70 degrees</small></div>
+            <div class="badge badge-sun">☀️ Sunlight<br /><small>6.5 hrs today</small></div>
+            <div class="badge badge-moist">💧 Moisture<br /><small>Needs water</small></div>
+          </div>
+        </div>
+
+        <div class="proof-band">
+          <div class="proof-copy">
+            <h2>Stop guessing.<br />Start growing.</h2>
+            <p>
+              Most plants don't die because we don't care, they die because we
+              don't know what they need. SmartSprout takes the guessing out of
+              plant care.
+            </p>
+          </div>
+          <div class="proof-photo">
+            <img
+              src="images/img-proof.jpg"
+              alt="Person in green dress watering houseplants by a window"
+            />
+          </div>
+          <ul class="stats-list">
+            <li class="stat">
+              <span class="stat-icon">👤</span>
+              <strong>2,000+</strong>
+              <span>daily users</span>
+            </li>
+            <li class="stat">
+              <span class="stat-icon">🌿</span>
+              <strong>95%</strong>
+              <span>plants healthier</span>
+            </li>
+            <li class="stat">
+              <span class="stat-icon">😊</span>
+              <strong>Happier</strong>
+              <span>plants and people</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>Everything your plant needs.</h2>
+        <div class="features-grid">
+          <article class="feature-card feature-card--benefit">
+            <div class="benefit-icon">💧</div>
+            <h3>Smart Moisture Tracking</h3>
+            <p>Built-in soil sensors let you know when it's time to water.</p>
+          </article>
+
+          <article class="feature-card feature-card--benefit">
+            <div class="benefit-icon">☀️</div>
+            <h3>Sunlight<br />Monitoring</h3>
+            <p>Track light exposure to find the perfect spot for your plant.</p>
+          </article>
+
+          <article class="feature-card feature-card--benefit">
+            <div class="benefit-icon">📱</div>
+            <h3>Companion<br />App</h3>
+            <p>Get reminders, care tips, and growth insights from your phone, anytime.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="feature-cards">
+        <div class="features-grid">
+          <article class="feature-card feature-card--photo">
+            <img
+              src="images/img-feature-1.jpg"
+              alt="SmartSprout device sitting beside a minimalist white planter"
+            />
+            <div class="feature-card-copy">
+              <h3>Sleek, Modern Design.</h3>
+              <p>Minimalist design that fits any space in your home.</p>
+            </div>
+          </article>
+
+          <article class="feature-card feature-card--photo">
+            <img
+              src="images/image-feature-2.jpg"
+              alt="App dashboard showing moisture, light, and temperature readings"
+            />
+            <div class="feature-card-copy">
+              <h3>Real-Time Insight.</h3>
+              <p>View moisture, light intake, and temperature in the app.</p>
+            </div>
+          </article>
+
+          <article class="feature-card feature-card--photo">
+            <img
+              src="images/image-feature-3.jpg"
+              alt="Person holding SmartSprout device in a plant nursery"
+            />
+            <div class="feature-card-copy">
+              <h3>Long-Lasting Battery.</h3>
+              <p>Up to 9 months of battery life from a single charge.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="data">
+        <h2>Compare plans.</h2>
+        <div class="table-scroll">
+          <table id="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Features</th>
+                <th scope="col">SmartSprout Base</th>
+                <th scope="col">SmartSprout Plus</th>
+                <th scope="col">SmartSprout Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Moisture Sensor</td>
+                <td>✓</td><td>✓</td><td>✓</td>
+              </tr>
+              <tr>
+                <td>Light Sensor</td>
+                <td>—</td><td>✓</td><td>✓</td>
+              </tr>
+              <tr>
+                <td>Temp Tracking</td>
+                <td>—</td><td>—</td><td>✓</td>
+              </tr>
+              <tr>
+                <td>Battery Life</td>
+                <td>3 Months</td><td>6 Months</td><td>9 Months</td>
+              </tr>
+              <tr class="row-price">
+                <td><strong>Price</strong></td>
+                <td><strong>$29</strong></td>
+                <td><strong>$39</strong></td>
+                <td><strong>$59</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="video">
+        <div class="video-layout">
+          <div class="video-thumb">
+            <img
+              src="images/img-media.jpg"
+              alt="Person tending to houseplants — SmartSprout product video thumbnail"
+            />
+            <div class="play-btn"><span>▶</span></div>
+          </div>
+          <div class="video-copy">
+            <h2>See SmartSprout in action.</h2>
+            <p>
+              Watch how easy it is to keep your plants healthy and happy.
+            </p>
+            <a href="#contact" class="btn-primary">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <h2>Stay in the loop.</h2>
+            <p>
+              Get care tips, product updates, and early access to new features
+              delivered to your inbox.
+            </p>
+          </div>
+          <form class="contact-form" action="#" method="post">
+            <div class="form-field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+            <button type="submit" id="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>&copy; 2026 SmartSprout. All rights reserved.</span>
+        <nav aria-label="Footer navigation">
+          <a href="#hero">Home</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+  </body>
+</html>

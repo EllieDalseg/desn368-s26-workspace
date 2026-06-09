@@ -31,6 +31,207 @@ h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; }
 h3 { font-size: 1.05rem; font-weight: 700; }
 
 
+/* ══════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--green-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity .9s ease, transform .9s ease, filter .9s ease;
+}
+
+#loader.loader--out {
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* ── Flower plant ── */
+.loader-plant {
+  position: relative;
+  width: 130px;
+  height: 200px;
+}
+
+/* Soil */
+.plant-soil {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -45px;
+  width: 90px;
+  height: 20px;
+  background: #3a2415;
+  border-radius: 50%;
+  transform: scaleX(0);
+  animation: soilAppear .35s ease .1s forwards;
+}
+
+/* Stem */
+.plant-stem {
+  position: absolute;
+  bottom: 12px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 108px;
+  background: #588157;
+  border-radius: 4px;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  z-index: 1;
+  animation: stemGrow .85s cubic-bezier(.22,.61,.36,1) .3s forwards;
+}
+
+/* Leaves on the stem */
+.plant-leaf {
+  position: absolute;
+  width: 34px;
+  height: 20px;
+  background: #a3b18a;
+  border-radius: 50% 0 50% 0;
+  opacity: 0;
+}
+
+.plant-leaf--left {
+  bottom: 72px;
+  left: 12px;
+  animation: leafLeft .45s cubic-bezier(.34,1.56,.64,1) .9s forwards;
+}
+
+.plant-leaf--right {
+  bottom: 95px;
+  right: 12px;
+  animation: leafRight .45s cubic-bezier(.34,1.56,.64,1) 1.05s forwards;
+}
+
+/* Flower head */
+.flower-head {
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 35px);
+  width: 70px;
+  height: 70px;
+  z-index: 2;
+}
+
+/* Each petal wrapper rotates around the flower center */
+.petal-wrap {
+  position: absolute;
+  width: 16px;
+  height: 28px;
+  top: 7px;   /* 35 - 28 = 7  (flower center y = 35) */
+  left: 27px; /* 35 - 8  = 27 (flower center x = 35) */
+  transform-origin: 8px 28px; /* bottom-center of petal = flower center */
+}
+
+.petal {
+  width: 100%;
+  height: 100%;
+  background: #f2c4a0;
+  border-radius: 50% 50% 30% 30%;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  animation: petalBloom .4s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
+.petal.p1 { animation-delay: 1.15s; }
+.petal.p2 { animation-delay: 1.25s; }
+.petal.p3 { animation-delay: 1.35s; }
+.petal.p4 { animation-delay: 1.2s;  }
+.petal.p5 { animation-delay: 1.3s;  }
+.petal.p6 { animation-delay: 1.4s;  }
+
+/* Yellow center */
+.flower-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  background: #fde68a;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: centerPop .4s cubic-bezier(.34,1.56,.64,1) 1.5s forwards;
+}
+
+/* Brand text */
+.loader-brand {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  margin-top: 1.75rem;
+  opacity: 0;
+  animation: loaderTextIn .5s ease 1.8s forwards;
+}
+
+/* ── Loader keyframes ── */
+@keyframes soilAppear {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes stemGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes leafLeft {
+  from { transform: rotate(-35deg) scale(0); opacity: 0; }
+  to   { transform: rotate(-35deg) scale(1); opacity: 1; }
+}
+
+@keyframes leafRight {
+  from { transform: rotate(210deg) scale(0); opacity: 0; }
+  to   { transform: rotate(210deg) scale(1); opacity: 1; }
+}
+
+@keyframes petalBloom {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes centerPop {
+  0%   { transform: translate(-50%, -50%) scale(0); }
+  70%  { transform: translate(-50%, -50%) scale(1.3); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes loaderTextIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Skip loader for reduced motion users */
+@media (prefers-reduced-motion: reduce) {
+  #loader { display: none; }
+}
+
+/* ── Animation ── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-copy {
+    animation: fadeInUp .7s ease both;
+  }
+}
+
 /* ── Buttons ── */
 .btn-primary,
 .btn-secondary {
@@ -45,6 +246,12 @@ h3 { font-size: 1.05rem; font-weight: 700; }
 .btn-primary  { background: var(--green-dark); color: var(--white); }
 .btn-secondary { background: transparent; color: var(--green-dark);
                   border: 2px solid var(--green-dark); }
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--green-mid);
+  outline-offset: 3px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .btn-primary:hover,
@@ -97,6 +304,11 @@ h3 { font-size: 1.05rem; font-weight: 700; }
   transition: opacity .15s;
 }
 .nav-link:hover { opacity: 1; }
+.nav-link:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 
 
 /* ══════════════════════════════════════════
@@ -199,42 +411,21 @@ h3 { font-size: 1.05rem; font-weight: 700; }
   align-items: center;
 }
 
-.video-thumb {
+.video-embed {
   position: relative;
-  border-radius: var(--radius);
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
   overflow: hidden;
-  display: block;
-  cursor: pointer;
-}
-.video-thumb img {
-  width: 100%;
-  display: block;
   border-radius: var(--radius);
 }
-.play-btn {
+.video-embed iframe {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.play-btn span {
-  width: 64px;
-  height: 64px;
-  background: rgba(255,255,255,.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,.25);
-  transition: transform .2s, box-shadow .2s;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .video-thumb:hover .play-btn span {
-    transform: scale(1.1);
-    box-shadow: 0 6px 24px rgba(0,0,0,.35);
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius);
 }
 
 .video-copy { color: var(--ink); display: flex; flex-direction: column; gap: 1.5rem; }
@@ -258,7 +449,10 @@ h3 { font-size: 1.05rem; font-weight: 700; }
 #feature-cards {
   background: var(--cream);
   padding: 5rem 1.5rem;
+  text-align: center;
 }
+
+#feature-cards > h2 { margin-bottom: 3rem; }
 
 .features-grid {
   max-width: 1100px;
@@ -391,7 +585,25 @@ h3 { font-size: 1.05rem; font-weight: 700; }
   transition: border-color .15s;
 }
 
-.form-field input:focus { outline: none; border-color: var(--green-mid); }
+.form-field input:focus,
+.form-field textarea:focus { outline: none; border-color: var(--green-mid); }
+
+.form-field textarea {
+  padding: .7rem 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--white);
+  resize: vertical;
+  transition: border-color .15s;
+}
+
+.form-field input:invalid,
+.form-field textarea:invalid { border-color: var(--green-dark); }
+
+.form-field input:valid,
+.form-field textarea:valid { border-color: var(--green-mid); }
 
 #submit {
   align-self: flex-start;
@@ -411,6 +623,11 @@ h3 { font-size: 1.05rem; font-weight: 700; }
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(45,90,61,.3);
   }
+}
+
+#submit:focus-visible {
+  outline: 2px solid var(--green-mid);
+  outline-offset: 3px;
 }
 
 
@@ -435,9 +652,84 @@ footer {
 }
 
 footer nav { display: flex; gap: 1.5rem; }
-footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+footer a { color: rgba(255,255,255,.7); text-decoration: none; display: inline-block; }
 footer a:hover { color: var(--white); }
+footer a:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; border-radius: 3px; }
 
+
+/* ══════════════════════════════════════════
+   WHIMSICAL ANIMATIONS
+══════════════════════════════════════════ */
+
+/* Floating badges */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes badgeFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-9px); }
+  }
+  .badge-temp  { animation: badgeFloat 3s   ease-in-out 0s    infinite; }
+  .badge-sun   { animation: badgeFloat 3.6s ease-in-out .7s   infinite; }
+  .badge-moist { animation: badgeFloat 2.9s ease-in-out 1.3s  infinite; }
+}
+
+/* CTA button pulse glow */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 0 0    rgba(52,78,65,.45); }
+    55%      { box-shadow: 0 0 0 14px rgba(52,78,65,0);   }
+  }
+  .hero-copy .btn-primary {
+    animation: ctaPulse 2.6s ease-in-out 1.2s infinite;
+  }
+}
+
+/* Scroll reveal — base (only when JS has loaded) */
+@media (prefers-reduced-motion: no-preference) {
+  .js-loaded .scroll-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .js-loaded .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Stagger siblings */
+  .js-loaded .scroll-reveal:nth-child(2) { transition-delay: .13s; }
+  .js-loaded .scroll-reveal:nth-child(3) { transition-delay: .26s; }
+}
+
+/* ══════════════════════════════════════════
+   HOVER ANIMATIONS
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Proof photo zoom */
+  .proof-photo { overflow: hidden; border-radius: 12px; }
+  .proof-photo img { transition: transform .5s ease; }
+  .proof-photo:hover img { transform: scale(1.05); }
+
+  /* Stats lift */
+  .stat { transition: transform .25s ease; }
+  .stat:hover { transform: translateY(-6px); }
+
+  /* Benefit icon bounce on card hover */
+  .benefit-icon { transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+  .feature-card--benefit:hover .benefit-icon { transform: scale(1.18) rotate(10deg); }
+
+  /* Feature photo card — image zoom (card already has overflow:hidden) */
+  .feature-card--photo img { transition: transform .5s ease; }
+  .feature-card--photo:hover img { transform: scale(1.07); }
+
+  /* Data table row highlight */
+  #data-table tbody tr { transition: filter .2s ease; }
+  #data-table tbody tr:not(.row-price):hover { filter: brightness(.93); }
+
+  /* Footer links slide */
+  footer a { transition: color .15s ease, transform .2s ease; }
+  footer a:hover { transform: translateX(4px); color: var(--white); }
+
+}
 
 /* ══════════════════════════════════════════
    RESPONSIVE

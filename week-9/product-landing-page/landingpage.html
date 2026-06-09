@@ -8,12 +8,36 @@
   </head>
   <body>
 
+    <!-- Loading screen -->
+    <div id="loader">
+      <div class="loader-plant">
+        <!-- Flower head with 6 petals -->
+        <div class="flower-head">
+          <div class="petal-wrap" style="transform:rotate(0deg)"><div class="petal p1"></div></div>
+          <div class="petal-wrap" style="transform:rotate(60deg)"><div class="petal p2"></div></div>
+          <div class="petal-wrap" style="transform:rotate(120deg)"><div class="petal p3"></div></div>
+          <div class="petal-wrap" style="transform:rotate(180deg)"><div class="petal p4"></div></div>
+          <div class="petal-wrap" style="transform:rotate(240deg)"><div class="petal p5"></div></div>
+          <div class="petal-wrap" style="transform:rotate(300deg)"><div class="petal p6"></div></div>
+          <div class="flower-center"></div>
+        </div>
+        <!-- Stem -->
+        <div class="plant-stem"></div>
+        <!-- Leaves -->
+        <div class="plant-leaf plant-leaf--left"></div>
+        <div class="plant-leaf plant-leaf--right"></div>
+        <!-- Soil -->
+        <div class="plant-soil"></div>
+      </div>
+      <p class="loader-brand">SmartSprout</p>
+    </div>
+
     <header id="header">
       <div class="header-inner">
         <a href="#hero" class="logo-link">
           <img
             id="header-img"
-            src="images/Vector.png"
+            src="Vector.png"
             alt="SmartSprout leaf logo mark"
           />
           <span class="logo-name">SmartSprout</span>
@@ -42,7 +66,7 @@
           </div>
           <div class="hero-visual">
             <img
-              src="images/img-hero.jpg"
+              src="img-hero.jpg"
               alt="Potted snake plant with SmartSprout sensor attached"
             />
             <div class="badge badge-temp">🌡 Temp<br /><small>70 degrees</small></div>
@@ -55,7 +79,7 @@
           <div class="proof-band">
             <div class="proof-photo">
               <img
-                src="images/img-proof.jpg"
+                src="img-proof.jpg"
                 alt="Person in green dress watering houseplants by a window"
               />
             </div>
@@ -69,17 +93,17 @@
               </div>
               <ul class="stats-list">
                 <li class="stat">
-                  <span class="stat-icon"><img src="images/figure.png" alt="Person icon" /></span>
+                  <span class="stat-icon"><img src="figure.png" alt="Person icon" /></span>
                   <strong>2,000+</strong>
                   <span>daily users</span>
                 </li>
                 <li class="stat">
-                  <span class="stat-icon"><img src="images/planty.png" alt="Plant icon" /></span>
+                  <span class="stat-icon"><img src="planty.png" alt="Plant icon" /></span>
                   <strong>95%</strong>
                   <span>plants healthier</span>
                 </li>
                 <li class="stat">
-                  <span class="stat-icon"><img src="images/happy.png" alt="Happy face icon" /></span>
+                  <span class="stat-icon"><img src="happy.png" alt="Happy face icon" /></span>
                   <strong>Happier</strong>
                   <span>plants and people</span>
                 </li>
@@ -93,19 +117,19 @@
         <h2>Everything your plant needs.</h2>
         <div class="features-grid">
           <article class="feature-card feature-card--benefit">
-            <div class="benefit-icon"><img src="images/drop.png" alt="Water droplet icon" /></div>
+            <div class="benefit-icon"><img src="drop.png" alt="Water droplet icon" /></div>
             <h3>Smart Moisture Tracking</h3>
             <p>Built-in soil sensors let you know when it's time to water.</p>
           </article>
 
           <article class="feature-card feature-card--benefit">
-            <div class="benefit-icon"><img src="images/sun.png" alt="Sun icon" /></div>
+            <div class="benefit-icon"><img src="sun.png" alt="Sun icon" /></div>
             <h3>Sunlight Monitoring</h3>
             <p>Track light exposure to find the perfect spot for your plant.</p>
           </article>
 
           <article class="feature-card feature-card--benefit">
-            <div class="benefit-icon"><img src="images/phone.png" alt="Phone icon" /></div>
+            <div class="benefit-icon"><img src="phone.png" alt="Phone icon" /></div>
             <h3>Companion App</h3>
             <p>Get reminders, care tips, and growth insights from your phone, anytime.</p>
           </article>
@@ -113,10 +137,11 @@
       </section>
 
       <section id="feature-cards">
+        <h2>Built for real life.</h2>
         <div class="features-grid">
           <article class="feature-card feature-card--photo">
             <img
-              src="images/img-feature-1.jpg"
+              src="img-feature-1.jpg"
               alt="SmartSprout device sitting beside a minimalist white planter"
             />
             <div class="feature-card-copy">
@@ -127,7 +152,7 @@
 
           <article class="feature-card feature-card--photo">
             <img
-              src="images/image-feature-2.jpg"
+              src="image-feature-2.jpg"
               alt="App dashboard showing moisture, light, and temperature readings"
             />
             <div class="feature-card-copy">
@@ -138,7 +163,7 @@
 
           <article class="feature-card feature-card--photo">
             <img
-              src="images/image-feature-3.jpg"
+              src="image-feature-3.jpg"
               alt="Person holding SmartSprout device in a plant nursery"
             />
             <div class="feature-card-copy">
@@ -191,12 +216,14 @@
 
       <section id="video">
         <div class="video-layout">
-          <div class="video-thumb">
-            <img
-              src="images/img-media.jpg"
-              alt="Person tending to houseplants — SmartSprout product video thumbnail"
-            />
-            <div class="play-btn"><span>▶</span></div>
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/cyQZppWjCXY?rel=0"
+              title="Houseplant care tips for thriving indoor plants"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
           <div class="video-copy">
             <h2>See SmartSprout in action.</h2>
@@ -217,7 +244,7 @@
               delivered to your inbox.
             </p>
           </div>
-          <form class="contact-form" action="#" method="post">
+          <form id="contact-form" class="contact-form" action="#" method="post">
             <div class="form-field">
               <label for="name">Full name</label>
               <input type="text" id="name" name="name" placeholder="Jane Smith" required />
@@ -225,6 +252,10 @@
             <div class="form-field">
               <label for="email">Email address</label>
               <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us about your plants..." required></textarea>
             </div>
             <button type="submit" id="submit">Subscribe</button>
           </form>
@@ -243,6 +274,43 @@
         </nav>
       </div>
     </footer>
+
+    <script>
+      /* ── Loader ── */
+      window.addEventListener('load', function () {
+        var loader = document.getElementById('loader');
+        setTimeout(function () {
+          loader.classList.add('loader--out');
+          setTimeout(function () { loader.style.display = 'none'; }, 950);
+        }, 2800);
+      });
+
+      /* ── Scroll reveal ── */
+      (function () {
+        var targets = document.querySelectorAll(
+          '#features > h2, #features .feature-card, ' +
+          '#feature-cards .feature-card, ' +
+          '#data h2, ' +
+          '#video .video-embed, #video .video-copy, ' +
+          '#contact .contact-copy, #contact .contact-form, ' +
+          '.proof-copy, .stats-list, .proof-photo'
+        );
+
+        document.body.classList.add('js-loaded');
+        targets.forEach(function (el) { el.classList.add('scroll-reveal'); });
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        targets.forEach(function (el) { observer.observe(el); });
+      })();
+    </script>
 
   </body>
 </html>

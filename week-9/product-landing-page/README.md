@@ -55,6 +55,12 @@ Building the flower animation in pure CSS was the most complex part of the proje
 
 ---
 
+## Media Credits
+
+- **Video:** ["Houseplant Care Tips for Beginners"](https://www.youtube.com/watch?v=LZhnCxG5c6s) by [Pick Up Limes](https://www.youtube.com/@PickUpLimes) — used as a linked video thumbnail in the media section. All rights belong to the original creator.
+
+---
+
 ## Key Learnings
 
 - **Semantic HTML matters** — understanding when to use `<section>` vs `<article>` vs `<div>` made the code cleaner and more accessible, and I now think about document structure differently

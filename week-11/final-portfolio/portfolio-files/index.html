@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ellie Dalseg — Visual Communication Design</title>
+  <meta name="description" content="Portfolio of Ellie Dalseg — visual communication design student and aspiring game developer." />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════
+       NAVIGATION
+  ══════════════════════════════ -->
+  <nav aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">Ellie Dalseg</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="reflection.html">Reflection</a></li>
+      <li><a href="learning-log.html">Log</a></li>
+    </ul>
+  </nav>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <span class="ticker-inner">
+      ✦ visual communication design &nbsp;&nbsp; ✦ game developer in training &nbsp;&nbsp;
+      ✦ EWU 2026 &nbsp;&nbsp; ✦ html &amp; css &nbsp;&nbsp; ✦ typography &nbsp;&nbsp;
+      ✦ thrift queen &nbsp;&nbsp; ✦ pixel art &nbsp;&nbsp; ✦ dark academia &nbsp;&nbsp;
+      ✦ building for screens &nbsp;&nbsp; ✦ designing for play &nbsp;&nbsp;
+      ✦ visual communication design &nbsp;&nbsp; ✦ game developer in training &nbsp;&nbsp;
+      ✦ EWU 2026 &nbsp;&nbsp; ✦ html &amp; css &nbsp;&nbsp; ✦ typography &nbsp;&nbsp;
+      ✦ thrift queen &nbsp;&nbsp; ✦ pixel art &nbsp;&nbsp; ✦ dark academia &nbsp;&nbsp;
+      ✦ building for screens &nbsp;&nbsp; ✦ designing for play &nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
+  <header class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <p class="hero-eyebrow">✦ Designer &nbsp;·&nbsp; Game Dev &nbsp;·&nbsp; EWU 2026 ✦</p>
+
+    <h1 class="hero-name" aria-label="Ellie Dalseg">
+      <span class="line-1">Ellie</span>
+      <span class="line-2">Dalseg.</span>
+    </h1>
+
+    <p
+      class="hero-subtitle"
+      id="hero-subtitle"
+      data-text="Visual communication design student. Aspiring game developer. Maker of things that look good and feel better."
+    ></p>
+
+    <div class="hero-tags">
+      <span class="hero-tag">Visual Design</span>
+      <span class="hero-tag">Game Dev</span>
+      <span class="hero-tag">HTML &amp; CSS</span>
+      <span class="hero-tag">Typography</span>
+      <span class="hero-tag">Pixel Art</span>
+      <span class="hero-tag">Thrift Addict</span>
+    </div>
+
+
+    <!-- Initials watermark — right side hero decoration -->
+    <div class="hero-initials" aria-hidden="true">ED</div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="line"></div>
+      <span>scroll</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Big rotating marquee -->
+    <div class="marquee-section" aria-hidden="true">
+      <span class="marquee-inner">
+        &nbsp; Visual Communication Design &nbsp;·&nbsp; Game Development &nbsp;·&nbsp;
+        Typography &nbsp;·&nbsp; HTML &amp; CSS &nbsp;·&nbsp; Interaction Design &nbsp;·&nbsp;
+        Visual Communication Design &nbsp;·&nbsp; Game Development &nbsp;·&nbsp;
+        Typography &nbsp;·&nbsp; HTML &amp; CSS &nbsp;·&nbsp; Interaction Design &nbsp;·&nbsp;
+      </span>
+    </div>
+
+    <!-- ══════════════════════════════
+         ABOUT
+    ══════════════════════════════ -->
+    <section id="about">
+      <div class="section-inner">
+        <p class="section-label reveal">001 — About</p>
+
+        <div class="about-grid">
+          <div class="about-text reveal-left">
+            <h2>Hi — I'm <em>Ellie</em>,<br>nice to meet you.</h2>
+            <p>
+              I'm a visual communication design student at Eastern Washington University
+              with a lifelong obsession with video games. Not just playing them —
+              understanding why they feel the way they feel, why some worlds pull you in
+              and others don't, and how design is the invisible hand behind all of it.
+            </p>
+            <p>
+              Everything I make is an extension of me. My work has personality because
+              <em style="color:var(--accent);font-style:normal;">I</em> have personality —
+              I don't know how to design something I don't care about, and I think that
+              comes through. When I set my mind to something, I see it through. When
+              something's hard, I stay curious instead of walking away.
+            </p>
+            <p>
+              I love seeing what other people make as much as I love making things myself.
+              Design is more fun when it's a conversation. When I'm offline: thrifting,
+              antiquing, spiraling through Pinterest, playing whatever game has my brain
+              hostage this week.
+            </p>
+
+            <div class="interests-grid">
+              <span class="int-chip">Game Dev</span>
+              <span class="int-chip">Thrifting</span>
+              <span class="int-chip">Antiquing</span>
+              <span class="int-chip">Pinterest</span>
+              <span class="int-chip">Typography</span>
+              <span class="int-chip">Visual Design</span>
+            </div>
+          </div>
+
+          <div class="profile-frame-outer reveal-right">
+            <!--
+              ★ YOUR PHOTO GOES HERE:
+              Save the halftone portrait as  images/profile.jpg
+              It already looks perfect — no editing needed.
+            -->
+            <div class="profile-frame">
+              <img
+                src="images/profile.jpg"
+                alt="Ellie Dalseg — designer and aspiring game developer, halftone portrait with glasses"
+                onerror="this.outerHTML='<div style=\'width:100%;min-height:480px;display:flex;align-items:center;justify-content:center;background:var(--bg-card);color:var(--text-muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;\'><span>[ photo — add images/profile.jpg ]</span></div>'"
+              />
+            </div>
+
+            <!-- Ornamental moth -->
+            <svg class="moth-deco" width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Wings -->
+              <ellipse cx="28" cy="30" rx="26" ry="14" transform="rotate(-20 28 30)" fill="rgba(196,120,155,0.25)" stroke="rgba(196,120,155,0.5)" stroke-width="0.5"/>
+              <ellipse cx="52" cy="30" rx="26" ry="14" transform="rotate(20 52 30)" fill="rgba(196,120,155,0.25)" stroke="rgba(196,120,155,0.5)" stroke-width="0.5"/>
+              <!-- Inner wing details -->
+              <ellipse cx="28" cy="30" rx="14" ry="7" transform="rotate(-20 28 30)" fill="rgba(196,120,155,0.1)" stroke="rgba(196,120,155,0.3)" stroke-width="0.5"/>
+              <ellipse cx="52" cy="30" rx="14" ry="7" transform="rotate(20 52 30)" fill="rgba(196,120,155,0.1)" stroke="rgba(196,120,155,0.3)" stroke-width="0.5"/>
+              <!-- Body -->
+              <ellipse cx="40" cy="30" rx="3" ry="12" fill="rgba(196,120,155,0.6)"/>
+              <!-- Antennae -->
+              <path d="M37 20 Q32 10 28 6" stroke="rgba(196,120,155,0.5)" stroke-width="0.8" fill="none"/>
+              <path d="M43 20 Q48 10 52 6" stroke="rgba(196,120,155,0.5)" stroke-width="0.8" fill="none"/>
+              <circle cx="28" cy="6" r="1.5" fill="rgba(196,120,155,0.6)"/>
+              <circle cx="52" cy="6" r="1.5" fill="rgba(196,120,155,0.6)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polka dot divider -->
+    <div class="dot-divider" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════
+         PROJECTS
+    ══════════════════════════════ -->
+    <section id="projects">
+      <div class="section-inner">
+        <p class="section-label reveal">002 — Selected Work</p>
+
+        <div class="projects-header">
+          <h2 class="reveal">Things <em>I Built</em></h2>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Card 01: Game Site — "CLOSED" -->
+          <article class="project-card reveal">
+            <a href="https://elliedalseg.github.io/desn374-s26-ai/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+              <div class="card-thumb">
+                <img src="images/project-01-game.png"
+                     alt="CLOSED — Westfield Mall Night Shift game site, dark atmospheric design with glitchy red typography"
+                     class="card-img" />
+              </div>
+            </a>
+            <div class="card-body">
+              <p class="card-type">AI + Web &nbsp;·&nbsp; DESN374</p>
+              <h3>CLOSED — Game Design Site</h3>
+              <p>A horror-adjacent game site for "Westfield Mall — Night Shift."
+              Dark, atmospheric, and very me. AI-assisted design meets actual game dev passion.</p>
+              <a href="https://elliedalseg.github.io/desn374-s26-ai/"
+                 target="_blank" rel="noopener noreferrer"
+                 class="card-link">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 02: Tribute — Hayley Williams -->
+          <article class="project-card reveal">
+            <a href="https://codepen.io/editor/EllieDalseg/pen/019db170-c497-7346-b32f-9a9de3cafa07" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+              <div class="card-thumb">
+                <img src="images/project-02-tribute.png"
+                     alt="Hayley Williams tribute site — bold orange design with large typography celebrating the Paramore frontwoman"
+                     class="card-img" />
+              </div>
+            </a>
+            <div class="card-body">
+              <p class="card-type">Tribute Site &nbsp;·&nbsp; DESN368</p>
+              <h3>Hayley Williams — Tribute</h3>
+              <p>A tribute to Hayley Williams of Paramore. Bold, loud, unapologetically orange —
+              designed to match the energy of its subject.</p>
+              <a href="https://codepen.io/editor/EllieDalseg/pen/019db170-c497-7346-b32f-9a9de3cafa07"
+                 target="_blank" rel="noopener noreferrer"
+                 class="card-link">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 03: Field Guide — Skyrim -->
+          <article class="project-card reveal">
+            <a href="https://codepen.io/editor/EllieDalseg/pen/019e417d-9fc5-7501-9cfd-07e712fd7b1e" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+              <div class="card-thumb">
+                <img src="images/project-04-field.png"
+                     alt="Traveler's Field Guide to Skyrim — editorial layout with dragon emblem sidebar and atmospheric mountain landscape"
+                     class="card-img" />
+              </div>
+            </a>
+            <div class="card-body">
+              <p class="card-type">Editorial &nbsp;·&nbsp; DESN368</p>
+              <h3>Field Guide to Skyrim</h3>
+              <p>The Traveler's Field Guide to Skyrim. Editorial layout, typographic hierarchy,
+              and a subject I know embarrassingly well.</p>
+              <a href="https://codepen.io/editor/EllieDalseg/pen/019e417d-9fc5-7501-9cfd-07e712fd7b1e"
+                 target="_blank" rel="noopener noreferrer"
+                 class="card-link">View Project →</a>
+            </div>
+          </article>
+
+          <!-- Card 04: Landing Page — SmartSprout -->
+          <article class="project-card reveal">
+            <a href="https://elliedalseg.github.io/desn368-s26-workspace/week-9/product-landing-page/landingpage.html" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+              <div class="card-thumb">
+                <img src="images/project-03-landing.png"
+                     alt="SmartSprout product landing page — clean green minimal design for a real-time plant monitoring device"
+                     class="card-img" />
+              </div>
+            </a>
+            <div class="card-body">
+              <p class="card-type">Landing Page &nbsp;·&nbsp; DESN368</p>
+              <h3>SmartSprout — Landing Page</h3>
+              <p>A product landing page for SmartSprout, a plant monitoring device.
+              Clean, conversion-focused design — proof I can do restrained when needed.</p>
+              <a href="https://elliedalseg.github.io/desn368-s26-workspace/week-9/product-landing-page/landingpage.html"
+                 target="_blank" rel="noopener noreferrer"
+                 class="card-link">View Project →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════
+         CONTACT
+    ══════════════════════════════ -->
+    <section id="contact">
+      <div class="section-inner contact-inner">
+        <p class="section-label reveal">003 — Let's Talk</p>
+
+        <div class="contact-headline">
+          <h2 class="contact-big reveal">Say<br><em>Hello<span class="contact-dot">.</span></em></h2>
+          <div class="contact-right reveal">
+            <p class="contact-sub">
+              Open to collabs, conversations,<br>or just cool game recommendations.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:elliephant214@gmail.com" class="contact-email">
+                elliephant214@gmail.com ↗
+              </a>
+              <a href="https://github.com/EllieDalseg" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <span>GitHub</span>
+              </a>
+              <a href="https://instagram.com/ellie.dalseg" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <span>Instagram</span>
+              </a>
+              <a href="https://linkedin.com/in/ellie-dalseg" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-marquee-wrap" aria-hidden="true">
+          <span class="contact-marquee-inner">
+            ✦ let's make something &nbsp;&nbsp; ✦ open to opportunities &nbsp;&nbsp;
+            ✦ based in the PNW &nbsp;&nbsp; ✦ game dev + design &nbsp;&nbsp;
+            ✦ let's make something &nbsp;&nbsp; ✦ open to opportunities &nbsp;&nbsp;
+            ✦ based in the PNW &nbsp;&nbsp; ✦ game dev + design &nbsp;&nbsp;
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer>
+    <p>© 2026 Ellie Dalseg &nbsp;·&nbsp; All rights reserved</p>
+    <div class="footer-links">
+      <a href="learning-log.html">Learning Log</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="https://github.com/EllieDalseg" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <p class="ai-note">
+      Co-created with Claude (Anthropic) — code scaffolding, layout architecture,
+      and animation systems. All design direction, content, and aesthetic choices by Ellie Dalseg.
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
